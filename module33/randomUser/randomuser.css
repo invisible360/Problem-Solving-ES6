@@ -1,0 +1,14 @@
+.user-profile {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 5px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+#user-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
