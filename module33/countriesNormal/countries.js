@@ -14,10 +14,8 @@ const passingData = data => {
         const div = document.createElement('div');
         div.classList.add('country')
         div.innerHTML = `
-        <div style="display: flex; align-items: center; justify-content: space-around;">
             <p><span>Country Name: </span>${element.name.common}</p>
-            <button onclick="singleCountryDetails ('${element.cca3}')">Country Details</button>
-        </div>
+            <button class = "btn btn-info" onclick="singleCountryDetails ('${element.cca3}')">Country Details</button>
         `
         countryContainer.appendChild(div);
     });
