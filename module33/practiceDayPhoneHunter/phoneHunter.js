@@ -17,10 +17,6 @@ const toogleSpinner = (isLoading) => {
 }
 
 const passingData = (data) => {
-    // console.log(data);
-    const phoneContainer = document.getElementById('phone-container');
-    phoneContainer.innerHTML = ``;
-
     // no phone found message
     if (data.length === 0) {
         document.getElementById('not-found-field').classList.remove('hidden');
@@ -30,26 +26,26 @@ const passingData = (data) => {
         document.getElementById('not-found-field').classList.add('hidden');
         toogleSpinner(false);
     }
-
-
+    const phoneContainer = document.getElementById('phone-container');
+    phoneContainer.innerHTML = ``;
     data.forEach(phone => {
         const { image, phone_name, slug } = phone;
 
         const divPhone = document.createElement('div');
         divPhone.innerHTML = `
-    <div class="card bg-base-100 shadow-xl">
-        <figure><img src=${image} alt="Shoes" /></figure>
-        <div class="card-body flex items-center justify-between flex-row">
-            <div>
-                <h2 class="card-title">${phone_name}</h2>
-            </div>
+        <div class="card bg-base-100 shadow-xl">
+            <figure><img src=${image} alt="Shoes" /></figure>
+            <div class="card-body flex items-center justify-between flex-row">
+                <div>
+                    <h2 class="card-title">${phone_name}</h2>
+                </div>
 
-            <!-- The button to open modal -->
-            <div>
-                <label onclick = "openDetails('${slug}')" for="my-modal-6" class="btn modal-button">Details</label>
+                <!-- The button to open modal -->
+                <div>
+                    <label onclick = "openDetails('${slug}')" for="my-modal-6" class="btn modal-button">Details</label>
+                </div>
             </div>
         </div>
-    </div>
         `
         toogleSpinner(false);
         phoneContainer.appendChild(divPhone);
@@ -66,11 +62,12 @@ const openDetails = async (phoneId) => {
 }
 
 const openModal = (phoneDetails) => {
+    // destructuring
     const { name, brand, releaseDate, mainFeatures, others } = phoneDetails;
     const { storage, displaySize, chipSet, memory, sensors } = mainFeatures;
     const { WLAN, Bluetooth, GPS, NFC, Radio, USB } = others;
-    const specsContainer = document.getElementById('specs');
 
+    const specsContainer = document.getElementById('specs');
     specsContainer.innerHTML = `
     <h3 class="font-bold text-2xl">${name}</h3>
     <p class="py-1"><span class="font-bold">Brand: </span>${brand}</p>
@@ -105,6 +102,7 @@ const takeSearchValue = () => {
     const searchText = searchTextField.value
     toogleSpinner(true);
     loadData(searchText);
+    searchTextField.value = ''
 }
 
 const searchText = (event) => {
@@ -117,5 +115,3 @@ const searchText = (event) => {
 const searchBtn = () => {
     takeSearchValue();
 }
-
-// loadData('a');
